@@ -74,7 +74,8 @@ def basemapLeaflet():
                                 'temp/{z}/{x}/{y}.png'),
         'OpenWeatherMap Snow': ('http://{s}.tile.openweathermap.org/map/' +
                                 'snow/{z}/{x}/{y}.png'),
-        'OpenSeaMap': 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png'
+        'OpenSeaMap': 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png',
+        'GSIMap': 'http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
     }
     return dictionary
 
@@ -287,6 +288,15 @@ new ol.layer.Tile({{
         url: 'http://tile.openweathermap.org/map/snow/{{z}}/{{x}}/{{y}}.png',
         attributions: [new ol.Attribution({{html: '{attr}'}})]
     }})
+}})""",
+        "GSIMap": """
+new ol.layer.Tile({{
+    'title': '{title}',
+    'type': 'base',
+    source: new ol.source.XYZ({{
+        url: 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
+        attributions: [new ol.Attribution({{html: '{attr}'}})]
+    }})
 }})"""
     }
     basemaps = {k: v.format(**{'title': k, 'attr': basemapAttributions[k]})
@@ -378,5 +388,6 @@ Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>""",
     'OpenWeatherMap Temp': """\
 Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>""",
     'OpenWeatherMap Snow': """\
-Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>"""
+Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>""",
+    'GSIMap': """<a href="http://maps.gsi.go.jp/development/ichiran.html" target="_blank">GSImap</a>"""
 }
