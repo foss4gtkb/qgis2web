@@ -66,6 +66,7 @@ paramsOL = {
 }
 
 baselayers = (
+            "GSIMap",
             "OSM",
             "OSM B&W",
             "Stamen Toner",
